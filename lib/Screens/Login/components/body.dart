@@ -1,3 +1,5 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
@@ -9,6 +11,10 @@ import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../amplifyconfiguration.dart';
+
+
+
 class Body extends StatefulWidget {
   const Body({
     Key key,
@@ -16,12 +22,25 @@ class Body extends StatefulWidget {
 
   @override
   State<Body> createState() => _BodyState();
+
+
 }
 
 class _BodyState extends State<Body> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
   final loginformkey = GlobalKey<FormState>();
+
+  var emailData = '';
+  var passData = '';
+
+
+  @override
+  void initState() {
+    super.initState();
+    _configureAmplify();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +64,9 @@ class _BodyState extends State<Body> {
               RoundedInputForm(
                 controller: email,
                 hintText: "Your Email",
-                onChanged: (value) {},
+                onChanged: (value) {
+                  emailData = value;
+                },
                 callback: (val) {
                   if (val == null || val.isEmpty) {
                     return 'Please Enter Your Email Id';
@@ -57,6 +78,7 @@ class _BodyState extends State<Body> {
                 },
               ),
               RoundedPasswordField(
+
                 validate: (val) {
                   if (val == null || val.isEmpty) {
                     return 'Please Enter Your password';
@@ -66,16 +88,15 @@ class _BodyState extends State<Body> {
                   }
                   return null;
                 },
-                onChanged: (value) {},
+                onChanged: (value) {
+                  passData = value;
+                },
               ),
               RoundedButton(
                 text: "LOGIN",
                 press: () {
                   if (loginformkey.currentState.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailScreen()));
+                    login();
                   }
                 },
               ),
@@ -98,4 +119,44 @@ class _BodyState extends State<Body> {
       ),
     );
   }
+
+  Future<void> login() async {
+
+    try {
+      await Amplify.Auth.signIn(username: emailData, password: passData);
+
+      print("User Login success");
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => DetailScreen()));
+
+    } on Exception catch (e) {
+      print('An error occurred login: $e');
+      print(e.toString());
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.toString()),
+      ));
+    }
+
+
+
+
+  }
+
+  Future<void> _configureAmplify() async {
+    try {
+      if (Amplify.isConfigured == false){
+        await Amplify.addPlugin(AmplifyAuthCognito());
+        await Amplify.configure(amplifyconfig);
+      }
+    } on Exception catch (e) {
+      print('An error occurred configuring Amplify: $e');
+
+
+    }
+  }
+
 }

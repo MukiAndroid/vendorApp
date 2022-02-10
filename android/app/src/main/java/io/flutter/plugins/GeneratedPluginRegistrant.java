@@ -16,6 +16,26 @@ public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
+      flutterEngine.getPlugins().add(new com.amazonaws.amplify.amplify_analytics_pinpoint.AmplifyAnalyticsPinpointPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin amplify_analytics_pinpoint, com.amazonaws.amplify.amplify_analytics_pinpoint.AmplifyAnalyticsPinpointPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.amazonaws.amplify.amplify_auth_cognito.AuthCognito());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin amplify_auth_cognito, com.amazonaws.amplify.amplify_auth_cognito.AuthCognito", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.amazonaws.amplify.amplify_core.AmplifyCorePlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin amplify_core, com.amazonaws.amplify.amplify_core.AmplifyCorePlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.amazonaws.amplify.Amplify());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin amplify_flutter, com.amazonaws.amplify.Amplify", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_plugin_android_lifecycle, io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin", e);
