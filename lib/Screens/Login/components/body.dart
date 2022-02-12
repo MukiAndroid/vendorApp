@@ -9,11 +9,9 @@ import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
+import 'package:flutter_auth/services/position.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../amplifyconfiguration.dart';
-
-
 
 class Body extends StatefulWidget {
   const Body({
@@ -22,8 +20,6 @@ class Body extends StatefulWidget {
 
   @override
   State<Body> createState() => _BodyState();
-
-
 }
 
 class _BodyState extends State<Body> {
@@ -34,11 +30,25 @@ class _BodyState extends State<Body> {
   var emailData = '';
   var passData = '';
 
+  var isConfigureAWS = false;
+  bool loading = false;
 
   @override
   void initState() {
     super.initState();
+
     _configureAmplify();
+    
+    determinePosition().then((value) => {
+
+      print("Location : $value")
+
+    });
+
+
+    
+    
+
   }
 
   @override
@@ -78,7 +88,6 @@ class _BodyState extends State<Body> {
                 },
               ),
               RoundedPasswordField(
-
                 validate: (val) {
                   if (val == null || val.isEmpty) {
                     return 'Please Enter Your password';
@@ -92,7 +101,11 @@ class _BodyState extends State<Body> {
                   passData = value;
                 },
               ),
-              RoundedButton(
+
+              loading
+                  ? Center(
+                child: CircularProgressIndicator.adaptive(),
+              ) :  RoundedButton(
                 text: "LOGIN",
                 press: () {
                   if (loginformkey.currentState.validate()) {
@@ -101,18 +114,18 @@ class _BodyState extends State<Body> {
                 },
               ),
               SizedBox(height: size.height * 0.03),
-              AlreadyHaveAnAccountCheck(
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpScreen();
-                      },
-                    ),
-                  );
-                },
-              ),
+              // AlreadyHaveAnAccountCheck(
+              //   press: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) {
+              //           return SignUpScreen();
+              //         },
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),
@@ -122,41 +135,168 @@ class _BodyState extends State<Body> {
 
   Future<void> login() async {
 
-    try {
-      await Amplify.Auth.signIn(username: emailData, password: passData);
+    setState(() {
+      loading = true;
+    });
 
-      print("User Login success");
+    print("emailData : $emailData");
+    print("password : $passData");
 
-      Navigator.push(
+    if (isConfigureAWS == true) {
+      try {
+        await Amplify.Auth.signIn(username: emailData, password: passData);
+
+        setState(() {
+          loading = false;
+        });
+        print("User Login success");
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("User Login successfully"),
+        ));
+
+        Navigator.pushReplacement<void, void>(
           context,
-          MaterialPageRoute(
-              builder: (context) => DetailScreen()));
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => DetailScreen(),
+          ),
+        );
 
-    } on Exception catch (e) {
-      print('An error occurred login: $e');
-      print(e.toString());
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => DetailScreen()));
+      } on AuthException catch (e) {
 
+        if (e.message.contains('There is already a user signed in')) {
+            await Amplify.Auth.signOut();
+            login();
+
+            setState(() {
+              loading = false;
+            });
+            return;
+        }else if (e.message.contains('User not found in the system')) {
+          try {
+
+
+            await Amplify.Auth.signUp(username: emailData, password: passData);
+
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("$emailData is successfully sign up"),
+            ));
+
+            setState(() {
+              loading = false;
+            });
+
+            return;
+          } on AuthException catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(e.message),
+            ));
+
+            setState(() {
+              loading = false;
+            });
+
+            return;
+          }
+        }else if (e.message.contains('Failed since user is not authorized')) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Enter valid id password"),
+          ));
+
+          setState(() {
+            loading = false;
+          });
+
+          return;
+
+        }else{
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(e.message),
+          ));
+
+          setState(() {
+            loading = false;
+          });
+
+          return;
+        }
+
+    //
+
+        // print('An error occurred login: $e');
+        // print(e.toString());
+        print(e.message);
+        print("*******");
+
+        // User not confirmed in the system.
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message),
+        ));
+
+      }
+    } else {
+      setState(() {
+        loading = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.toString()),
+        content: Text("AWS is not Configure"),
       ));
     }
 
-
-
-
+    // Future<String> _onSignup(LoginData data) async {
+    //   try {
+    //     await Amplify.Auth.signUp(
+    //       username: data.name,
+    //       password: data.password,
+    //       options: CognitoSignUpOptions(userAttributes: {
+    //         'email': data.name,
+    //       }),
+    //     );
+    //
+    //     _data = data;
+    //   } on AuthException catch (e) {
+    //     return '${e.message} - ${e.recoverySuggestion}';
+    //   }
+    // }
   }
 
   Future<void> _configureAmplify() async {
     try {
-      if (Amplify.isConfigured == false){
+      if (Amplify.isConfigured == false) {
         await Amplify.addPlugin(AmplifyAuthCognito());
         await Amplify.configure(amplifyconfig);
+        isConfigureAWS = true;
+        setState(() {});
       }
     } on Exception catch (e) {
       print('An error occurred configuring Amplify: $e');
-
-
     }
   }
 
+
+
+// void userExist(email String) {
+// return this.cognitoService.userExist(email.toLowerCase()).then(res => {
+// return false;
+// }).catch(error => {
+// const code = error.code;
+// console.log(error);
+// switch (code) {
+// case 'UserNotFoundException':
+// return !this.redirectToRegister(email);
+// case 'NotAuthorizedException':
+// return true;
+// case 'PasswordResetRequiredException':
+// return !this.forgotPassword(email);
+// case 'UserNotConfirmedException':
+// return !this.redirectToCompleteRegister(email);
+// default:
+// return false;
+// }
+// });
+// }
 }

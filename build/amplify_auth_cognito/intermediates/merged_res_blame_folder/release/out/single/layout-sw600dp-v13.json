@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/amplify_auth_cognito/intermediates/merged_res/release/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/amplify_auth_cognito/intermediates/merged_res/release/layout-sw600dp-v13/mtrl_layout_snackbar.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/layout-sw600dp-v13/mtrl_layout_snackbar.xml"
+    }
+]

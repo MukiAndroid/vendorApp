@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/amplify_auth_cognito/intermediates/merged_res/release/interpolator-v21/mtrl_fast_out_linear_in.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/interpolator-v21/mtrl_fast_out_linear_in.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/amplify_auth_cognito/intermediates/merged_res/release/interpolator-v21/mtrl_fast_out_slow_in.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/interpolator-v21/mtrl_fast_out_slow_in.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/amplify_auth_cognito/intermediates/merged_res/release/interpolator-v21/mtrl_linear_out_slow_in.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/interpolator-v21/mtrl_linear_out_slow_in.xml"
+    }
+]

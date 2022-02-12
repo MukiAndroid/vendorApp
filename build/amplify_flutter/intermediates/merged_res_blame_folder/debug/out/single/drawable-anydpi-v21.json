@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/deepakkumar/On Git/Flutter app/Client Data/build/amplify_flutter/intermediates/merged_res/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/On Git/Flutter app/Client Data/build/amplify_flutter/intermediates/merged_res/debug/drawable-anydpi-v21/design_ic_visibility.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/7409740f029f0605a66394a46e8e3c6b/transformed/material-1.0.0/res/drawable-anydpi-v21/design_ic_visibility.xml"
+    }
+]

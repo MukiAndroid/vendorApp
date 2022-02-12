@@ -17,13 +17,22 @@ class _QRScannerState extends State<QRScanner> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
+      result = scanData;
+      secondPageRoute();
     });
   }
 
   bool flash = false;
+  secondPageRoute() async {
+    controller?.pauseCamera();
+    Navigator.pop(context, result);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

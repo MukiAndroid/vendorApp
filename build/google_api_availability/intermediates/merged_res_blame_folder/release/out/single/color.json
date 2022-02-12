@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/google_api_availability/intermediates/merged_res/release/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/e89b75ac4f96a8f3511f4a37b3bf3d1e/transformed/jetified-play-services-base-17.2.1/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/google_api_availability/intermediates/merged_res/release/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/e89b75ac4f96a8f3511f4a37b3bf3d1e/transformed/jetified-play-services-base-17.2.1/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/google_api_availability/intermediates/merged_res/release/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/e89b75ac4f96a8f3511f4a37b3bf3d1e/transformed/jetified-play-services-base-17.2.1/res/color/common_google_signin_btn_text_dark.xml"
+    }
+]

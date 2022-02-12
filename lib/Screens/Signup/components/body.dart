@@ -1,3 +1,4 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
@@ -112,7 +113,7 @@ class Body extends StatelessWidget {
         ),
       );
 
-    } on Exception catch (e) {
+    } on AuthException catch (e) {
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.toString()),
