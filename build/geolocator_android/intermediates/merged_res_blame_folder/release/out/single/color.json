@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/43c93b9bc6f20c2304a97ea7d869688b/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/43c93b9bc6f20c2304a97ea7d869688b/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/Deepak /FProject /UpTrackCard/Sample 3 Days/vendorApp/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/43c93b9bc6f20c2304a97ea7d869688b/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_text_light.xml"
+    }
+]

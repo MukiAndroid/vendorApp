@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vendorapp-dev-02628-authRole",
+      "UnauthRoleArn": "arn:aws:iam::916046822618:role/amplify-vendorapp-dev-02628-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::916046822618:role/amplify-vendorapp-dev-02628-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-vendorapp-dev-02628-deployment",
+      "UnauthRoleName": "amplify-vendorapp-dev-02628-unauthRole",
+      "StackName": "amplify-vendorapp-dev-02628",
+      "StackId": "arn:aws:cloudformation:us-east-1:916046822618:stack/amplify-vendorapp-dev-02628/29db4120-8aa3-11ec-87c2-0a01febed24b",
+      "AmplifyAppId": "dn138kx7yqrtj"
+    }
+  },
+  "auth": {
+    "vendorappcac0df08": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vendorapp-dev-02628-deployment/amplify-cfn-templates/auth/vendorappcac0df08-cloudformation-template.json",
+        "logicalId": "authvendorappcac0df08"
+      },
+      "lastPushTimeStamp": "2022-02-10T19:01:15.547Z",
+      "output": {
+        "UserPoolId": "us-east-1_3OgC3uEaj",
+        "AppClientIDWeb": "3gn2rmkl4g1a76984d7bqlaokh",
+        "AppClientID": "2h21vm1e31hl9asggcpoujr8b9",
+        "IdentityPoolId": "us-east-1:a706e17e-8aea-424d-be61-c86bd1bf6697",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:916046822618:userpool/us-east-1_3OgC3uEaj",
+        "IdentityPoolName": "vendorappcac0df08_identitypool_cac0df08__dev",
+        "UserPoolName": "vendorappcac0df08_userpool_cac0df08"
+      },
+      "lastPushDirHash": "EvsVss0/7V/ehjxMTkGyqOg2lJU="
+    }
+  }
+}

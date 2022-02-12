@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/deepakkumar/On Git/Flutter app/Client Data/build/amplify_analytics_pinpoint/intermediates/merged_res/debug/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/2f2789343ece7dedfb89e290fd9a0748/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/deepakkumar/On Git/Flutter app/Client Data/build/amplify_analytics_pinpoint/intermediates/merged_res/debug/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/deepakkumar/.gradle/caches/transforms-3/2f2789343ece7dedfb89e290fd9a0748/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    }
+]

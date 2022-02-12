@@ -1,0 +1,2 @@
+com/amazonaws/amplify/amplify_analytics_pinpoint/BuildConfig.java
+ com.amazonaws.amplify.amplify_analytics_pinpoint.BuildConfig
