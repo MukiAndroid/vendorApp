@@ -8,6 +8,7 @@ import 'package:flutter_auth/Screens/thank.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/services/pickimage.dart';
 import 'package:flutter_auth/services/qrscanner.dart';
 import 'package:geolocator/geolocator.dart';
@@ -74,14 +75,14 @@ class _DetailScreenState extends State<DetailScreen> {
               child: Form(
                 key: loginformkey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(height: 10),
+                    // SizedBox(height: 10),
                     Text(
                       "DETAILS",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: size.height * 0.03),
+                    SizedBox(height: size.height * 0.04),
                     RoundedInputForm(
                       callback: (val) {
                         if (val == null || val.isEmpty) {
@@ -177,7 +178,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       },
                       child: TextFieldContainer(
                         child: SizedBox(
-                          // height: 40,
+                          height: imgpath != null ? 100 : 40,
                           child: Center(
                             child: imgpath != null
                                 ? Image.file(File(imgpath,),height: 100,width: 100,)
@@ -332,7 +333,6 @@ class _DetailScreenState extends State<DetailScreen> {
 
   getUserLocation() async {
     _currentPosition = await locateUser();
-    // print("_currentPosition : $_currentPosition");
     setState(() {
     });
   }
@@ -354,22 +354,19 @@ Future apiForLogin(
     Position _currentPosition,
     ) async {
 
-  var uri = Uri.parse('https://devo.resilient-ai.com/v1/merchants');
+  var uri = Uri.parse(baseApi+merchantsAPi);
   var request = new http.MultipartRequest("POST", uri);
   request.fields['name'] = shopname;
   request.fields['gst_number'] = gstno;
   request.fields['owner_primary_contact'] = num;
   request.fields['mcc'] = mcc;
-  // request.fields['qr_codes'] = '';
   request.fields['lat'] = _currentPosition == null ? "95.2" : _currentPosition.latitude.toString();
   request.fields['lng'] = _currentPosition == null ? "93.2" : _currentPosition.longitude.toString();
-
   List.generate(
       qrcodes.length, (index) => request.fields["qr_codes"] = '${qrcodes[index]}');
   if (qrcodes.length == 0) {
     request.fields["qr_codes"] = "";
   }
-
   request.files.add(
       http.MultipartFile.fromBytes(
           'images',
@@ -386,11 +383,10 @@ Future apiForLogin(
   print(jsonResponse);
 
   if (response.statusCode == 200) {
-
     if (jsonResponse["success"] == true) {
       return jsonResponse;
     } else {
-      return Future.error("Server Error");
+      return Future.error(jsonResponse["errorMessage".toString()]);
     }
   }else{
     return Future.error(jsonResponse["errorMessage".toString()]);
