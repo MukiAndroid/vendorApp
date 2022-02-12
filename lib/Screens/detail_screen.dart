@@ -76,7 +76,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: size.height * 0.01),
+                    SizedBox(height: 10),
                     Text(
                       "DETAILS",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -87,7 +87,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         if (val == null || val.isEmpty) {
                           return 'Please Enter Your shop name';
                         }
-
                         return null;
                       },
                       icon: Icons.store,
@@ -178,10 +177,10 @@ class _DetailScreenState extends State<DetailScreen> {
                       },
                       child: TextFieldContainer(
                         child: SizedBox(
-                          height: 40,
+                          // height: 40,
                           child: Center(
                             child: imgpath != null
-                                ? Image.file(File(imgpath))
+                                ? Image.file(File(imgpath,),height: 100,width: 100,)
                                 : Icon(
                               Icons.image,
                             ),
@@ -192,7 +191,6 @@ class _DetailScreenState extends State<DetailScreen> {
                     // ...qrList(list),
                     list.length != 0 ?
                     Container(
-
                       margin: EdgeInsets.only(left: 40,right: 40),
                       alignment: Alignment.topLeft,
                       child: Column(
